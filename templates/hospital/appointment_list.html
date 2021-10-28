@@ -1,0 +1,59 @@
+{% extends 'base.html' %} 
+
+
+{% block content %}
+        <div class="page-wrapper">
+           
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Doctor List</h4>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Patient_Name</th>
+                                            <th scope="col">Assigned_Doctor</th>
+                                            <th scope="col">Symptoms</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">User Time</th>
+                                            <th scope="col">Update</th>
+                                            <th scope="col">Delete</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {% for appointment in appointments %}
+                                          <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ appointment.patient_name }}</td>
+                                            <td>{{ appointment.doctor.doctor_name }}</td>
+                                            <td>{{ appointment.symptoms }}</td>
+                                            <td>{{ appointment.phone }}</td>
+                                            <td>{{ appointment.time }}</td>
+                                            <td><a href="#" class="btn btn-primary"><i class="fas fa-edit"></i></a></td>
+                                            <td><a href="#" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></a></td>  
+                                          </tr>
+                                          {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                  
+                 
+                </div>
+              
+            </div>
+          
+        </div>
+        
+  
+{% endblock %}

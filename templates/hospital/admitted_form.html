@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="page-wrapper">
+           
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 style="color:darkslategray;" class="card-title text-center">Admitted Patient</h1>
+                        <div class="card-body">
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% for fields in form %}
+                                    <div class="form-group"></div>
+                                    {{ fields.label_tag }}
+                                    {{ fields }}
+                                {% endfor %}
+                                <br>
+                                <input type="submit" value="Submit" class="text-primary mt-3">
+                            </form>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+          
+         
+        </div>
+      
+    </div>
+  
+</div>
+
+
+{% endblock %}
+

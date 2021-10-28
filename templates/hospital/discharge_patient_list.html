@@ -1,0 +1,61 @@
+{% extends 'base.html' %} 
+
+
+{% block content %}
+        <div class="page-wrapper">
+           
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Doctor List</h4>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Patient_Name</th>
+                                            <th scope="col">Assigned_Doctor</th>
+                                            <th scope="col">Room_No</th>
+                                            <th scope="col">Entry_Date</th>
+                                            <!-- <th scope="col">Relase_Date</th>
+                                            <th scope="col">Room_Cost</th> -->
+                                            <th scope="col">Update</th>
+                                            <th scope="col">Delete</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {% for discharge in dis_patient %}
+                                          <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td><a href="{% url 'discharge-patient-detail' pk=discharge.pk %}">{{ discharge.admitted.patient_name }}</a></td>
+                                            <td>{{ discharge.assign_doctor.doctor_name }}</td>
+                                            <td>{{ discharge.admitted.room_no}}</td>
+                                            <td>{{ discharge.admitted.admited_date }}</td>
+                                            <!-- <td>{{ discharge.total_bill }}</td>
+                                            <td>{{ discharge.room_bill.days }}</td> -->
+                                            <td><a href="#" class="btn btn-primary"><i class="fas fa-edit"></i></a></td>
+                                            <td><a href="#" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></a></td>  
+                                          </tr>
+                                          {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                  
+                 
+                </div>
+              
+            </div>
+          
+        </div>
+        
+  
+{% endblock %}

@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+
+
+        <head>
+            <meta charset="utf-8">
+            <title>A simple, clean, and responsive HTML invoice template</title>
+
+            <style>
+                .invoice-box {
+                    max-width: 800px;
+                    margin: auto;
+                    padding: 30px;
+                    border: 1px solid #eee;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+                    font-size: 16px;
+                    line-height: 24px;
+                    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                    color: #555;
+                }
+
+                .invoice-box table {
+                    width: 100%;
+                    line-height: inherit;
+                    text-align: left;
+                }
+
+                .invoice-box table td {
+                    padding: 5px;
+                    vertical-align: top;
+                }
+
+                .invoice-box table tr td:nth-child(2) {
+                    text-align: right;
+                }
+
+                .invoice-box table tr.top table td {
+                    padding-bottom: 20px;
+                }
+
+                .invoice-box table tr.top table td.title {
+                    font-size: 45px;
+                    line-height: 45px;
+                    color: #333;
+                }
+
+                .invoice-box table tr.information table td {
+                    padding-bottom: 40px;
+                }
+
+                .invoice-box table tr.heading td {
+                    background: #eee;
+                    border-bottom: 1px solid #ddd;
+                    font-weight: bold;
+                }
+
+                .invoice-box table tr.details td {
+                    padding-bottom: 20px;
+                }
+
+                .invoice-box table tr.item td {
+                    border-bottom: 1px solid #eee;
+                }
+
+                .invoice-box table tr.item.last td {
+                    border-bottom: none;
+                }
+
+                .invoice-box table tr.total td:nth-child(2) {
+                    border-top: 2px solid #eee;
+                    font-weight: bold;
+                }
+
+                @media only screen and (max-width: 600px) {
+                    .invoice-box table tr.top table td {
+                        width: 100%;
+                        display: block;
+                        text-align: center;
+                    }
+
+                    .invoice-box table tr.information table td {
+                        width: 100%;
+                        display: block;
+                        text-align: center;
+                    }
+                }
+
+                /** RTL **/
+                .rtl {
+                    direction: rtl;
+                    font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                }
+
+                .rtl table {
+                    text-align: right;
+                }
+
+                .rtl table tr td:nth-child(2) {
+                    text-align: left;
+                }
+
+                .menu {
+                    top: 50px;
+                }
+
+                .download {
+                    text-align: center;
+                    display: block;
+                }
+            </style>
+        </head>
+
+        <br><br><br>
+
+
+        <div class="container center">
+            <div class="page-wrapper" style="padding-top: 20px;">
+
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="invoice-box" style="text-align: center;">
+                        <table cellpadding="0" cellspacing="0">
+                            <tr class="top">
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td class="title">
+                                                <h1>Hospital Management</h1>
+                                            </td>
+
+                                            <td>
+
+                                                Admit Date: {{ discharge_patient.admitted.admited_date }}<br>
+                                                Release Date: {{ discharge_patient.release_date }}<br>
+                                                Days Spent: {{ discharge_patient.days_count }}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr class="information">
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                Patient Name : {{ discharge_patient.admitted.patient_name }}<br>
+                                                Patient Mobile : {{ discharge_patient.admitted.phone }}<br>
+                                                Patient Addres : {{ discharge_patient.admitted.address}}<br>
+                                            </td>
+
+                                            <td>
+                                                Doctor Name :<br>
+                                                {{ discharge_patient.assign_doctor.doctor_name }}<br>
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr class="heading">
+                                <td>
+                                    Disease and Symptoms
+                                </td>
+                                <td>
+
+                                </td>
+
+                            </tr>
+
+                            <tr class="details">
+                                <td>
+                                    {{ discharge_patient.admitted.symptoms }}
+                                </td>
+                            </tr>
+                            <tr class="heading">
+                                <td>
+                                    Item
+                                </td>
+
+                                <td>
+                                    Price
+                                </td>
+                            </tr>
+
+                            <tr class="item">
+                                <td>
+                                    Room Charge of {{ discharge_patient.days_count.days }} Days
+                                </td>
+
+                                <td>
+                                    {{discharge_patient.admitted.room_service}}
+                                </td>
+                            </tr>
+
+                            <tr class="item">
+                                <td>
+                                    Doctor Fee
+                                </td>
+
+                                <td>
+                                    {{discharge_patient.assign_doctor.doctor_fee}}
+                                </td>
+                            </tr>
+
+                            <tr class="item">
+                                <td>
+                                    Medicine Cost
+                                </td>
+
+                                <td>
+                                    {{discharge_patient.medicine_cost}}
+                                </td>
+                            </tr>
+
+                            <tr class="item last">
+                                <td>
+                                    Other Charge
+                                </td>
+
+                                <td>
+                                    {{discharge_patient.other_charge}}
+                                </td>
+                            </tr>
+
+                            <tr class="total">
+                                <td></td>
+
+                                <td>
+                                    Total Rupees : {{discharge_patient.total_bill}}
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="download">
+                <a style="background:red; width:500px;" href="{% url 'pdf_download' pk=discharge_patient.pk %}">Download</a>
+            </div>
+
+
+        </div>
+
+
+{% endblock %}

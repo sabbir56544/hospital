@@ -1,0 +1,64 @@
+{% extends 'base.html' %} 
+
+
+{% block content %}
+        <div class="page-wrapper">
+           
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">
+                                  <a href="#" class="btn btn-primary">Create Appointments</a>
+                                  <h2 style="float: right;">Doctor List</h2>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Department</th>
+                                            <th scope="col">Fee</th>
+                                            <th scope="col">Phone</th>
+                                            {% if request.user.is_staff %}
+                                            <th scope="col">Update</th>
+                                            <th scope="col">Delete</th>
+                                            {% endif %}
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {% for doctor in doctors %}
+                                          <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ doctor.doctor_name }}</td>
+                                            <td>{{ doctor.department }}</td>
+                                            <td>{{ doctor.doctor_fee }}</td>
+                                            <td>{{ doctor.doctor_phone }}</td>
+                                            {% if request.user.is_staff %}
+                                            <td><a href="{% url 'doctor-edit' pk=doctor.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i></a></td>
+                                            <td><a href="{% url 'doctor-delete' pk=doctor.pk %}" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></a></td>  
+                                            {% endif %}
+                                          </tr>
+                                          {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                  
+                 
+                </div>
+              
+            </div>
+          
+        </div>
+        
+  
+{% endblock %}

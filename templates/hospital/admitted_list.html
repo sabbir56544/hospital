@@ -1,0 +1,61 @@
+{% extends 'base.html' %} 
+
+
+{% block content %}
+        <div class="page-wrapper">
+           
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Admitted Patient List</h4>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Patient_name</th>
+                                            <th scope="col">Symptoms</th>
+                                            <th scope="col">Assigned_doctor</th>
+                                            <th scope="col">Admitted_time</th>
+                                            <th scope="col">Room_no</th>
+                                            <th scope="col">Room_service</th>
+                                            <th scope="col">Discharge</th>
+                                            <th scope="col">Delete</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {% for admit in admitted %}
+                                          <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ admit.patient_name }}</td>
+                                            <td>{{ admit.symptoms }}</td>
+                                            <td>{{ admit.doctor.doctor_name }}</td>
+                                            <td>{{ admit.admited_date }}</td>
+                                            <td>{{ admit.room_no }}</td>
+                                            <td>{{ admit.room_service }}</td>
+                                            <td><a href="{% url 'discharge-view' pk=admit.pk %}" class="btn btn-primary"><i class="far fa-check-circle"></i></a></td>
+                                            <td><a href="#" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></a></td>  
+                                          </tr>
+                                          {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                  
+                 
+                </div>
+              
+            </div>
+          
+        </div>
+        
+  
+{% endblock %}
